@@ -3,7 +3,7 @@ import { InputForm } from './components/inputForm';
 import { ControlRadio } from './components/form-control';
 import { NewListAdd } from './components/new-list-add';
 import { Posts } from './components/todoposts/posts';
-import { BasicSelect } from './components/todoposts/basic-select';
+import { BasicSelect } from './components/basic-select';
 import { useAppSelector } from './hook';
 import { RootState } from './store';
 

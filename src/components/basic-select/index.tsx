@@ -4,8 +4,8 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import { Typography } from '@mui/material';
-import { useAppDispatch } from '../../../hook';
-import { setSelectValue } from '../../../store/selectSlice';
+import { useAppDispatch } from '../../hook';
+import { setSelectValue } from '../../store/selectSlice';
 
 export function BasicSelect() {
   const dispatch = useAppDispatch();
