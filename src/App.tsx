@@ -12,16 +12,22 @@ const MainContainer = styled.div`
   margin: 15px auto 15px auto;
   padding: 20px;
   background-color: #ada3a3;
-  width: 100%;
+  width: 50%;
   min-height: 500px;
   max-height: 100%;
   border-radius: 30px;
   box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
 
-  @media only screen and (min-width: 1058px) {
-    width: 50%;
+  @media (max-width: 1017px) {
+    width: 100%;
+  }
+
+  @media (max-width: 511px) {
+    display: flex;
+    flex-direction: column;
   }
 `;
+
 const LeftContainer = styled.div`
   background-color: #c0d3b6;
   padding: 15px;
@@ -31,6 +37,10 @@ const LeftContainer = styled.div`
   border-radius: 30px;
   box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
   margin-right: 15px;
+
+  @media (max-width: 511px) {
+    width: 100%;
+  }
 `;
 const RigthContainer = styled.div`
   padding-bottom: 20px;
@@ -40,6 +50,11 @@ const RigthContainer = styled.div`
   max-height: 100%;
   border-radius: 30px;
   box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+
+  @media (max-width: 511px) {
+    margin-top: 1rem;
+    width: 100%;
+  }
 `;
 
 function App() {

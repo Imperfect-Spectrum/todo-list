@@ -48,7 +48,7 @@ export function InputForm() {
   };
   const style = {
     width: 500,
-    backgroundColor: { xs: 'secondary.light', sm: '#ffffff' },
+    backgroundColor: { xs: '#ffffff', sm: '#ffffff' },
     boxShadow: 6,
   };
   return (

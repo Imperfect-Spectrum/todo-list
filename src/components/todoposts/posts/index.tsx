@@ -11,7 +11,6 @@ interface StyledTaskType {
   completed: boolean;
   deleted: boolean;
 }
-// const Task = styled.div<StyledTaskType>`
 const Task = styled.div<StyledTaskType>`
   display: flex;
   height: auto;
@@ -42,7 +41,6 @@ export function Posts() {
   const dispatch = useAppDispatch();
   const sortValue = useAppSelector((state: RootState) => state.sorts.sortValue);
   const todos = useAppSelector((state: RootState) => state.todos.todos).filter((todo) => todo.sort === sortValue);
-  console.log(sortValue);
   const selectValue = useAppSelector((state: RootState) => state.setSelect.selectValue);
 
   const filteredTodos = () => {
