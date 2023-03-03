@@ -25,7 +25,7 @@ export function BasicSelect() {
       <Box sx={{ minWidth: 120 }}>
         <FormControl fullWidth>
           <InputLabel>Type</InputLabel>
-          <Select onChange={handleChange} defaultValue="">
+          <Select onChange={handleChange} defaultValue="" sx={{ boxShadow: 6 }}>
             <MenuItem value="All">All</MenuItem>
             <MenuItem value="Completed">Completed</MenuItem>
             <MenuItem value="Deleted">Deleted</MenuItem>

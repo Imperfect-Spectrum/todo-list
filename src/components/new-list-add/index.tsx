@@ -4,8 +4,10 @@ import Modal from '@mui/material/Modal';
 import Box from '@mui/material/Box/Box';
 import Container from '@mui/material/Container';
 import TextField from '@mui/material/TextField';
+import { Alert } from '@mui/material';
 import { addNewList } from '../../store/sortSlice';
-import { useAppDispatch } from '../../hook';
+import { useAppDispatch, useAppSelector } from '../../hook';
+import { RootState } from '../../store';
 
 const styleModal = {
   position: 'absolute',
@@ -19,27 +21,41 @@ const styleModal = {
   p: 4,
   margin: 'auto',
 };
+const styleModalTwo = {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -200%)',
+  bgcolor: 'red',
+  border: '2px solid #000',
+  boxShadow: 24,
+};
 
 export function NewListAdd() {
-  const [open, setOpen] = useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  const [openModal, setOpenModal] = useState(false);
+  const [openTwoModal, setOpenTwoModal] = useState(false);
+  const handleOpenClose = () => setOpenModal(!openModal);
+  const handleOpenClosetwoModal = () => setOpenTwoModal(!openTwoModal);
+
   const [sortName, setSortName] = useState('');
   const dispatch = useAppDispatch();
+  const sortList = useAppSelector((state: RootState) => state.sorts.sortList);
 
   const addNew = (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault();
-    dispatch(addNewList({ sortName }));
-    setOpen(false);
+    const index = sortList.findIndex((obj: { sortName: string }) => obj.sortName === sortName);
+    // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+    index === -1 ? dispatch(addNewList({ sortName })) : setOpenTwoModal(!openTwoModal);
+    handleOpenClose();
     setSortName('');
   };
 
   return (
     <div>
-      <Button onClick={handleOpen} variant="outlined" fullWidth>
+      <Button onClick={handleOpenClose} variant="outlined" fullWidth sx={{ boxShadow: 6 }}>
         + Add list
       </Button>
-      <Modal open={open} onClose={handleClose}>
+      <Modal open={openModal} onClose={handleOpenClose}>
         <Box sx={styleModal}>
           <Container>
             <TextField
@@ -62,11 +78,24 @@ export function NewListAdd() {
               onClick={addNew}
               sx={{
                 width: 300,
+                boxShadow: 6,
               }}
             >
               Submit
             </Button>
           </Container>
+        </Box>
+      </Modal>
+      <Modal open={openTwoModal} onClose={handleOpenClosetwoModal}>
+        <Box sx={styleModalTwo}>
+          <Alert
+            variant="filled"
+            severity="warning"
+            sx={{ fontSize: '1.5rem', padding: '2rem' }}
+            onClick={handleOpenClosetwoModal}
+          >
+            You can &apos;t create two categories of the same category!
+          </Alert>
         </Box>
       </Modal>
     </div>

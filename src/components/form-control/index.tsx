@@ -7,10 +7,10 @@ import { setValueSort } from '../../store/sortSlice';
 export function ControlRadio() {
   const dispatch = useAppDispatch();
   const sortList = useAppSelector((state: RootState) => state.sorts.sortList);
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>, value: string) => {
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     dispatch(
       setValueSort({
-        sortValue: value,
+        sortValue: event.target.value,
         sortList: [],
       })
     );
@@ -31,7 +31,7 @@ export function ControlRadio() {
         >
           {sortList.map((sort) => (
             <FormControlLabel
-              key={sortList.indexOf(sort)}
+              key={sortList.findIndex((obj: { sortName: string }) => obj.sortName === sort.sortName)}
               value={sort.sortName}
               control={<Radio />}
               label={sort.sortName}

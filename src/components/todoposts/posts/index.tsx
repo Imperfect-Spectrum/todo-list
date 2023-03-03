@@ -42,6 +42,7 @@ export function Posts() {
   const dispatch = useAppDispatch();
   const sortValue = useAppSelector((state: RootState) => state.sorts.sortValue);
   const todos = useAppSelector((state: RootState) => state.todos.todos).filter((todo) => todo.sort === sortValue);
+  console.log(sortValue);
   const selectValue = useAppSelector((state: RootState) => state.setSelect.selectValue);
 
   const filteredTodos = () => {
@@ -63,6 +64,18 @@ export function Posts() {
       {filteredTodoList === null ? (
         <Typography variant="h5" color="darkred" align="center" sx={{ marginBottom: 1, marginTop: 23 }}>
           Select the &quot;All&quot; type and add a task
+        </Typography>
+      ) : null}
+
+      {filteredTodoList !== null && !sortValue ? (
+        <Typography variant="h5" color="darkred" align="center" sx={{ marginBottom: 1, marginTop: 23 }}>
+          Create or select a category
+        </Typography>
+      ) : null}
+
+      {filteredTodoList !== null && sortValue && todos.length === 0 ? (
+        <Typography variant="h5" color="darkred" align="center" sx={{ marginBottom: 1, marginTop: 23 }}>
+          Create a task
         </Typography>
       ) : null}
 

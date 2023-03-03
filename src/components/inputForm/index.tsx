@@ -1,4 +1,4 @@
-import { Button, TextField } from '@mui/material';
+import { Alert, Box, Button, Modal, TextField } from '@mui/material';
 import { useState } from 'react';
 import styled from 'styled-components';
 import { useAppDispatch, useAppSelector } from '../../hook';
@@ -12,22 +12,38 @@ const Container = styled.form`
   padding-left: 20px;
   padding-right: 20px;
 `;
+const styleModal = {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -200%)',
+  bgcolor: 'red',
+  border: '2px solid #000',
+  boxShadow: 24,
+};
+
 export function InputForm() {
+  const [openModal, setOpenModal] = useState(false);
+  const handleOpenClose = () => setOpenModal(!openModal);
   const dispatch = useAppDispatch();
   const [info, setInfo] = useState('');
   const sortValue = useAppSelector((state: RootState) => state.sorts.sortValue);
 
   const addNewTask = (e: React.MouseEvent<HTMLElement> | React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    dispatch(
-      addTodo({
-        id: new Date().getTime(),
-        text: info,
-        completed: false,
-        deleted: false,
-        sort: sortValue,
-      })
-    );
+    if (info === '') {
+      setOpenModal(!openModal);
+    } else {
+      dispatch(
+        addTodo({
+          id: new Date().getTime(),
+          text: info,
+          completed: false,
+          deleted: false,
+          sort: sortValue,
+        })
+      );
+    }
     setInfo('');
   };
   const style = {
@@ -45,7 +61,7 @@ export function InputForm() {
           }}
           value={info}
           id="standard-basic"
-          label="Filled"
+          label="Enter a task"
           variant="filled"
           onChange={(e) => {
             setInfo(e.target.value);
@@ -58,11 +74,24 @@ export function InputForm() {
           onClick={addNewTask}
           sx={{
             width: 300,
+            boxShadow: 6,
           }}
         >
           Submit
         </Button>
       </Container>
+      <Modal open={openModal} onClose={handleOpenClose}>
+        <Box sx={styleModal}>
+          <Alert
+            variant="filled"
+            severity="warning"
+            sx={{ fontSize: '1.5rem', padding: '2rem' }}
+            onClick={handleOpenClose}
+          >
+            You can &apos;t create an empty to-do!
+          </Alert>
+        </Box>
+      </Modal>
     </div>
   );
 }
