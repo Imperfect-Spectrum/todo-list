@@ -1,77 +1,76 @@
 import styled from 'styled-components';
+import { Typography } from '@mui/material';
 import { InputForm } from './components/inputForm';
 import { ControlRadio } from './components/form-control';
-import { NewListAdd } from './components/new-list-add';
 import { Posts } from './components/todoposts/posts';
-import { BasicSelect } from './components/basic-select';
-import { useAppSelector } from './hook';
-import { RootState } from './store';
+import { ButtonSelectGroup } from './components/button-group';
+import { NewListAdd } from './components/new-list-add';
 
 const MainContainer = styled.div`
-  display: flex;
-  margin: 15px auto 15px auto;
-  padding: 20px;
-  background-color: #ada3a3;
+  background-image: url('/src/assets/header-4.png');
+  background-position: top;
+  background-repeat: repeat-x;
+  background-size: 100% auto;
+  background-color: #f1efef;
+  min-height: 1300px;
+  max-height: 100%;
   width: 50%;
-  min-height: 500px;
-  max-height: 100%;
-  border-radius: 30px;
+  min-width: 970px;
+  margin-left: auto;
+  margin-right: auto;
   box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
 
-  @media (max-width: 1017px) {
+  @media (max-width: 1016px) {
+    background-image: url('src/assets/header-3.png');
+    background-position: top;
+    background-repeat: repeat-x;
+    background-size: 100% auto;
     width: 100%;
+    min-width: auto;
   }
-
-  @media (max-width: 511px) {
-    display: flex;
-    flex-direction: column;
+  @media (max-width: 765px) {
+    background-image: url('src/assets/header-2.png');
+    background-position: top;
+    background-repeat: repeat-x;
+    background-size: 100% auto;
+  }
+  @media (max-width: 507px) {
+    background-image: url('src/assets/header-1.png');
+    background-position: top;
+    background-repeat: repeat-x;
+    background-size: 100% auto;
   }
 `;
 
-const LeftContainer = styled.div`
-  background-color: #c0d3b6;
-  padding: 15px;
-  width: 30%;
-  min-height: 500px;
-  max-height: 100%;
+const BasicSelectContainer = styled.div`
+  background-color: #f1f5f9;
+  min-height: 100px;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
   border-radius: 30px;
-  box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
-  margin-right: 15px;
-
-  @media (max-width: 511px) {
-    width: 100%;
-  }
-`;
-const RigthContainer = styled.div`
+  margin-top: 4rem;
+  padding-top: 10px;
   padding-bottom: 20px;
-  background-color: #c0d3b6;
-  width: 70%;
-  min-height: 500px;
-  max-height: 100%;
-  border-radius: 30px;
   box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
-
-  @media (max-width: 511px) {
-    margin-top: 1rem;
-    width: 100%;
-  }
 `;
 
 function App() {
-  const selectValue = useAppSelector((state: RootState) => state.setSelect.selectValue);
-  const sortValue = useAppSelector((state: RootState) => state.sorts.sortValue);
   return (
     <MainContainer>
-      <LeftContainer>
-        <BasicSelect />
+      <Typography variant="h3" align="center" color="white" sx={{ paddingTop: 5 }}>
+        To-do list
+      </Typography>
+      <BasicSelectContainer>
         <ControlRadio />
         <NewListAdd />
-      </LeftContainer>
-
-      <RigthContainer>
-        {selectValue === 'All' && sortValue ? <InputForm /> : null}
-        <Posts />
-      </RigthContainer>
+      </BasicSelectContainer>
+      <ButtonSelectGroup />
+      <Typography variant="h4" align="center" color="#1277d3" sx={{ paddingTop: 1 }}>
+        Tasks
+      </Typography>
+      <Posts />
+      <InputForm />
     </MainContainer>
   );
 }

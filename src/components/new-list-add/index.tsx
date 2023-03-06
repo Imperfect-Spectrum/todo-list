@@ -2,7 +2,6 @@ import Button from '@mui/material/Button';
 import { useState } from 'react';
 import Modal from '@mui/material/Modal';
 import Box from '@mui/material/Box/Box';
-import Container from '@mui/material/Container';
 import TextField from '@mui/material/TextField';
 import { Alert } from '@mui/material';
 import { addNewList } from '../../store/sortSlice';
@@ -11,7 +10,7 @@ import { RootState } from '../../store';
 
 const styleModal = {
   position: 'absolute',
-  top: '50%',
+  top: '70%',
   left: '50%',
   transform: 'translate(-50%, -200%)',
   width: 400,
@@ -23,12 +22,19 @@ const styleModal = {
 };
 const styleModalTwo = {
   position: 'absolute',
-  top: '50%',
+  top: '70%',
   left: '50%',
   transform: 'translate(-50%, -200%)',
   bgcolor: 'red',
   border: '2px solid #000',
   boxShadow: 24,
+};
+
+const styleTextField = {
+  backgroundColor: { xs: '#ffffff', sm: '#ffffff' },
+  boxShadow: 6,
+  width: '100%',
+  marginBottom: '20px',
 };
 
 export function NewListAdd() {
@@ -41,7 +47,7 @@ export function NewListAdd() {
   const dispatch = useAppDispatch();
   const sortList = useAppSelector((state: RootState) => state.sorts.sortList);
 
-  const addNew = (e: React.MouseEvent<HTMLElement>) => {
+  const addNew = (e: React.MouseEvent<HTMLElement> | React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const index = sortList.findIndex((obj: { sortName: string }) => obj.sortName === sortName);
     // eslint-disable-next-line @typescript-eslint/no-unused-expressions
@@ -51,22 +57,26 @@ export function NewListAdd() {
   };
 
   return (
-    <div>
-      <Button onClick={handleOpenClose} variant="outlined" fullWidth sx={{ boxShadow: 6 }}>
+    <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
+      <Button
+        onClick={handleOpenClose}
+        variant="outlined"
+        sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '20px', width: '70%' }}
+      >
         + Add list
       </Button>
       <Modal open={openModal} onClose={handleOpenClose}>
         <Box sx={styleModal}>
-          <Container>
+          <form onSubmit={addNew}>
             <TextField
               label="Enter a list name"
-              variant="outlined"
-              value={sortName}
-              size="medium"
               sx={{
-                width: 300,
-                marginBottom: 2,
+                ...styleTextField,
+                '& .MuiFilledInput-input': { color: 'black' },
               }}
+              value={sortName}
+              id="standard-basic"
+              variant="filled"
               onChange={(e) => {
                 setSortName(e.target.value);
               }}
@@ -77,13 +87,13 @@ export function NewListAdd() {
               size="large"
               onClick={addNew}
               sx={{
-                width: 300,
+                width: '100%',
                 boxShadow: 6,
               }}
             >
               Submit
             </Button>
-          </Container>
+          </form>
         </Box>
       </Modal>
       <Modal open={openTwoModal} onClose={handleOpenClosetwoModal}>
@@ -98,6 +108,6 @@ export function NewListAdd() {
           </Alert>
         </Box>
       </Modal>
-    </div>
+    </Box>
   );
 }

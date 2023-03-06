@@ -1,26 +1,23 @@
-import { Alert, Box, Button, Modal, TextField } from '@mui/material';
+import { Box, Button, createTheme, Modal, TextField } from '@mui/material';
 import { useState } from 'react';
-import styled from 'styled-components';
 import { useAppDispatch, useAppSelector } from '../../hook';
 import { RootState } from '../../store';
 import { addTodo } from '../../store/todoSlice';
 
-const Container = styled.form`
-  display: flex;
-  gap: 1em;
-  margin: 1em auto 0 auto;
-  padding-left: 20px;
-  padding-right: 20px;
-`;
 const styleModal = {
   position: 'absolute',
-  top: '50%',
+  top: '70%',
   left: '50%',
   transform: 'translate(-50%, -200%)',
-  bgcolor: 'red',
+  width: 400,
+  bgcolor: 'background.paper',
   border: '2px solid #000',
   boxShadow: 24,
+  p: 4,
+  margin: 'auto',
 };
+
+const theme = createTheme();
 
 export function InputForm() {
   const [openModal, setOpenModal] = useState(false);
@@ -43,53 +40,74 @@ export function InputForm() {
           sort: sortValue,
         })
       );
+      setOpenModal(!openModal);
     }
     setInfo('');
   };
-  const style = {
-    width: 500,
+  const styleTextField = {
     backgroundColor: { xs: '#ffffff', sm: '#ffffff' },
     boxShadow: 6,
+    width: '100%',
+    marginBottom: '20px',
   };
   return (
     <div>
-      <Container onSubmit={addNewTask}>
-        <TextField
-          sx={{
-            ...style,
-            '& .MuiFilledInput-input': { color: 'black' },
-          }}
-          value={info}
-          id="standard-basic"
-          label="Enter a task"
-          variant="filled"
-          onChange={(e) => {
-            setInfo(e.target.value);
-          }}
-        />
-
+      <Box
+        sx={{
+          position: 'fixed',
+          bottom: 6,
+          left: 0,
+          right: 0,
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+      >
         <Button
-          variant="contained"
           size="large"
-          onClick={addNewTask}
+          variant="contained"
           sx={{
-            width: 300,
-            boxShadow: 6,
+            width: '90%',
+            [theme.breakpoints.up('lg')]: {
+              width: 1070,
+            },
           }}
+          onClick={() => setOpenModal(!openModal)}
         >
-          Submit
+          Add new task
         </Button>
-      </Container>
+      </Box>
+
       <Modal open={openModal} onClose={handleOpenClose}>
         <Box sx={styleModal}>
-          <Alert
-            variant="filled"
-            severity="warning"
-            sx={{ fontSize: '1.5rem', padding: '2rem' }}
-            onClick={handleOpenClose}
-          >
-            You can &apos;t create an empty to-do!
-          </Alert>
+          <form onSubmit={addNewTask}>
+            <TextField
+              sx={{
+                ...styleTextField,
+                '& .MuiFilledInput-input': { color: 'black' },
+              }}
+              value={info}
+              id="standard-basic"
+              label="Enter a task"
+              variant="filled"
+              onChange={(e) => {
+                setInfo(e.target.value);
+              }}
+            />
+
+            <Button
+              variant="contained"
+              size="large"
+              onClick={addNewTask}
+              sx={{
+                width: '100%',
+                boxShadow: 6,
+              }}
+            >
+              Submit
+            </Button>
+          </form>
         </Box>
       </Modal>
     </div>
