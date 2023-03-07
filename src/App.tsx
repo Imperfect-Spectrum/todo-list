@@ -7,7 +7,7 @@ import { ButtonSelectGroup } from './components/button-group';
 import { NewListAdd } from './components/new-list-add';
 
 const MainContainer = styled.div`
-  background-image: url('/public/images/header-4.png');
+  background-image: url('/images/header-4.png');
   background-position: top;
   background-repeat: repeat-x;
   background-size: 100% auto;
@@ -21,7 +21,7 @@ const MainContainer = styled.div`
   box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
 
   @media (max-width: 1016px) {
-    background-image: url('/public/images/header-3.png');
+    background-image: url('/images/header-3.png');
     background-position: top;
     background-repeat: repeat-x;
     background-size: 100% auto;
@@ -29,13 +29,13 @@ const MainContainer = styled.div`
     min-width: auto;
   }
   @media (max-width: 765px) {
-    background-image: url('/public/images/header-2.png');
+    background-image: url('/images/header-2.png');
     background-position: top;
     background-repeat: repeat-x;
     background-size: 100% auto;
   }
   @media (max-width: 507px) {
-    background-image: url('/public/images/header-1.png');
+    background-image: url('/images/header-1.png');
     background-position: top;
     background-repeat: repeat-x;
     background-size: 100% auto;
