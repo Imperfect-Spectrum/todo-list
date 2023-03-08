@@ -1,4 +1,4 @@
-import { Box, Button, createTheme, Modal, TextField } from '@mui/material';
+import { Alert, Box, Button, createTheme, Modal, TextField } from '@mui/material';
 import { useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../hook';
 import { RootState } from '../../store';
@@ -17,11 +17,24 @@ const styleModal = {
   margin: 'auto',
 };
 
+const styleModalTwo = {
+  position: 'absolute',
+  top: '60%',
+  left: '50%',
+  transform: 'translate(-50%, -200%)',
+  width: 400,
+  bgcolor: 'background.paper',
+  borderRadius: '10%',
+  boxShadow: 24,
+  margin: 'auto',
+};
 const theme = createTheme();
 
 export function InputForm() {
   const [openModal, setOpenModal] = useState(false);
   const handleOpenClose = () => setOpenModal(!openModal);
+  const [openTwoModal, setOpenTwoModal] = useState(false);
+  const handleOpenClosetwoModal = () => setOpenTwoModal(!openTwoModal);
   const dispatch = useAppDispatch();
   const [info, setInfo] = useState('');
   const sortValue = useAppSelector((state: RootState) => state.sorts.sortValue);
@@ -30,6 +43,7 @@ export function InputForm() {
     e.preventDefault();
     if (info === '') {
       setOpenModal(!openModal);
+      setOpenTwoModal(!openTwoModal);
     } else {
       dispatch(
         addTodo({
@@ -50,6 +64,7 @@ export function InputForm() {
     width: '100%',
     marginBottom: '20px',
   };
+
   return (
     <div>
       <Box
@@ -70,7 +85,7 @@ export function InputForm() {
           sx={{
             width: '90%',
             [theme.breakpoints.up('lg')]: {
-              width: 1070,
+              width: 1000,
             },
           }}
           onClick={() => setOpenModal(!openModal)}
@@ -108,6 +123,14 @@ export function InputForm() {
               Submit
             </Button>
           </form>
+        </Box>
+      </Modal>
+
+      <Modal open={openTwoModal} onClose={handleOpenClosetwoModal}>
+        <Box sx={styleModalTwo}>
+          <Alert variant="filled" severity="warning" sx={{ fontSize: '1.5rem' }} onClick={handleOpenClosetwoModal}>
+            You can &apos;t create an empty task!
+          </Alert>
         </Box>
       </Modal>
     </div>

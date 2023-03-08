@@ -5,6 +5,8 @@ import { ControlRadio } from './components/form-control';
 import { Posts } from './components/todoposts/posts';
 import { ButtonSelectGroup } from './components/button-group';
 import { NewListAdd } from './components/new-list-add';
+import { useAppSelector } from './hook';
+import { RootState } from './store';
 
 const MainContainer = styled.div`
   background-image: url('/images/header-4.png');
@@ -56,6 +58,7 @@ const BasicSelectContainer = styled.div`
 `;
 
 function App() {
+  const sortValue = useAppSelector((state: RootState) => state.sorts.sortValue);
   return (
     <MainContainer>
       <Typography variant="h3" align="center" color="white" sx={{ paddingTop: 5 }}>
@@ -70,7 +73,7 @@ function App() {
         Tasks
       </Typography>
       <Posts />
-      <InputForm />
+      {sortValue ? <InputForm /> : null}
     </MainContainer>
   );
 }

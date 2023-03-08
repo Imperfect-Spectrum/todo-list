@@ -5,7 +5,7 @@ import { useAppDispatch } from '../../hook';
 import { setSelectValue } from '../../store/selectSlice';
 
 export function ButtonSelectGroup() {
-  const [value, setValue] = useState('web');
+  const [value, setValue] = useState('All');
   const dispatch = useAppDispatch();
   const handleChange = (event: React.MouseEvent<HTMLElement>, newValue: string) => {
     setValue(newValue);
@@ -24,9 +24,15 @@ export function ButtonSelectGroup() {
         aria-label="Platform"
         value={value}
       >
-        <ToggleButton value="All">All</ToggleButton>
-        <ToggleButton value="Completed">Completed</ToggleButton>
-        <ToggleButton value="Deleted">Deleted</ToggleButton>
+        <ToggleButton value="All" disabled={value === 'All'}>
+          All
+        </ToggleButton>
+        <ToggleButton value="Completed" disabled={value === 'Completed'}>
+          Completed
+        </ToggleButton>
+        <ToggleButton value="Deleted" disabled={value === 'Deleted'}>
+          Deleted
+        </ToggleButton>
       </ToggleButtonGroup>
     </Box>
   );

@@ -62,6 +62,32 @@ export function Posts() {
 
   return (
     <div>
+      {!sortValue ? (
+        <Typography
+          variant="h6"
+          sx={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            marginTop: '100px',
+          }}
+        >
+          Select a category or create one
+        </Typography>
+      ) : null}
+      {sortValue !== '' && filteredTodoList?.length === 0 ? (
+        <Typography
+          variant="h6"
+          sx={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            marginTop: '10%',
+          }}
+        >
+          Posts not found. Add a post!
+        </Typography>
+      ) : null}
       {filteredTodoList &&
         filteredTodoList.map((todo) => (
           <Task key={todo.id} completed={todo.completed} deleted={todo.deleted}>
@@ -81,7 +107,9 @@ export function Posts() {
             ) : null}
 
             <Box sx={{ display: 'flex', marginRight: 'auto' }}>
-              <Typography sx={{ wordBreak: 'break-word' }}>{todo.text}</Typography>
+              <Typography variant="h5" sx={{ wordBreak: 'break-word' }}>
+                {todo.text}
+              </Typography>
             </Box>
 
             {todo.completed ? (

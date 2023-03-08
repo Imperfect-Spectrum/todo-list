@@ -20,14 +20,17 @@ const styleModal = {
   p: 4,
   margin: 'auto',
 };
+
 const styleModalTwo = {
   position: 'absolute',
   top: '70%',
   left: '50%',
   transform: 'translate(-50%, -200%)',
-  bgcolor: 'red',
-  border: '2px solid #000',
+  width: 400,
+  bgcolor: 'background.paper',
+  borderRadius: '10%',
   boxShadow: 24,
+  margin: 'auto',
 };
 
 const styleTextField = {
@@ -98,12 +101,7 @@ export function NewListAdd() {
       </Modal>
       <Modal open={openTwoModal} onClose={handleOpenClosetwoModal}>
         <Box sx={styleModalTwo}>
-          <Alert
-            variant="filled"
-            severity="warning"
-            sx={{ fontSize: '1.5rem', padding: '2rem' }}
-            onClick={handleOpenClosetwoModal}
-          >
+          <Alert variant="filled" severity="warning" sx={{ fontSize: '1.5rem' }} onClick={handleOpenClosetwoModal}>
             You can &apos;t create two categories of the same category!
           </Alert>
         </Box>

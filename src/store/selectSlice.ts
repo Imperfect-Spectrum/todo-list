@@ -5,7 +5,7 @@ interface SelectType {
 }
 
 const initialState: SelectType = {
-  selectValue: '',
+  selectValue: 'All',
 };
 
 const selectSlice = createSlice({
