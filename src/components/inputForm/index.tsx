@@ -66,7 +66,7 @@ export function InputForm() {
   };
 
   return (
-    <div>
+    <>
       <Box
         sx={{
           position: 'fixed',
@@ -77,13 +77,14 @@ export function InputForm() {
           flexDirection: 'column',
           alignItems: 'center',
           justifyContent: 'center',
+          width: '100%',
         }}
       >
         <Button
           size="large"
           variant="contained"
           sx={{
-            width: '90%',
+            width: '80%',
             [theme.breakpoints.up('lg')]: {
               width: 1000,
             },
@@ -133,6 +134,6 @@ export function InputForm() {
           </Alert>
         </Box>
       </Modal>
-    </div>
+    </>
   );
 }

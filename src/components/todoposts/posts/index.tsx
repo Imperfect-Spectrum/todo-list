@@ -97,6 +97,7 @@ export function Posts() {
                   <Checkbox
                     aria-label="Checkbox"
                     color="success"
+                    checked={!!todo.completed}
                     onClick={() => {
                       dispatch(completeTodo(todo.id));
                     }}

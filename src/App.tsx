@@ -73,7 +73,7 @@ function App() {
         Tasks
       </Typography>
       <Posts />
-      {sortValue ? <InputForm /> : null}
+      {sortValue && sortValue !== 'None' ? <InputForm /> : null}
     </MainContainer>
   );
 }

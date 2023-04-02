@@ -25,8 +25,13 @@ const sortSlice = createSlice({
     addNewList: (state, action: PayloadAction<List>) => {
       state.sortList.push(action.payload);
     },
+
+    deleteList: (state, action: PayloadAction<string>) => {
+      state.sortList = state.sortList.filter((list) => list.sortName !== action.payload);
+      state.sortValue = '';
+    },
   },
 });
 
-export const { setValueSort, addNewList } = sortSlice.actions;
+export const { setValueSort, addNewList, deleteList } = sortSlice.actions;
 export default sortSlice.reducer;
