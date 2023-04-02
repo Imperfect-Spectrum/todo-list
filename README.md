@@ -3,9 +3,9 @@ A simple todo application that allows you to create tasks, mark them as complete
 
 Check out [live](https://todo-list-imperfect-spectrum.vercel.app/)
 
-
-![1](https://user-images.githubusercontent.com/55977481/229383648-3f7f5030-5d70-41db-9052-47700938f5dd.png)
-![2](https://user-images.githubusercontent.com/55977481/229383649-3113d6c6-c793-4757-8aa7-4175d5f77919.png)
+![изображение_2023-04-03_020358670](https://user-images.githubusercontent.com/55977481/229383797-e4f656aa-9a37-4d1b-a07c-8eb74ef5b3ef.png)
+![изображение_2023-04-03_020443694](https://user-images.githubusercontent.com/55977481/229383817-cd32a44d-ee27-4cfd-8c9f-111976f8a87d.png)
+![изображение_2023-04-03_020507175](https://user-images.githubusercontent.com/55977481/229383833-cf7b7c18-79cd-4825-9f27-d971ea1c163e.png)
 
 
 ## Application Description
