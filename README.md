@@ -13,7 +13,11 @@ Check out [live](https://todo-list-imperfect-spectrum.vercel.app/)
 The application was made using React, TS, Redux-Toolkit, Material-ui, Styled-components.
 
 ## How to run
+
 Clone this repo
+
 cd todo-list
+
 Run npm install
+
 Run npm run dev
