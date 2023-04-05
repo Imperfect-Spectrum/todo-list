@@ -12,6 +12,8 @@ Check out [live](https://todo-list-imperfect-spectrum.vercel.app/)
 ## Application Description
 The application was made using React, TS, Redux-Toolkit, Material-ui, Styled-components.
 
+The application also implements data saving between browser sessions using localstorage.
+
 ## How to run
 
 Clone this repo
